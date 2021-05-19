@@ -43,3 +43,5 @@ class Stack {
     // 这里不做了
   }
 }
+
+module.exports = Stack
