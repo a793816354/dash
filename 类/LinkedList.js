@@ -15,12 +15,12 @@ class Node {
 
 class LinkedList {
   constructor() {
-    this.first = null;
+    this.head = null;
   }
 
   initNode(value) {
-    if (!this.first) {
-      this.first = new Node(value);
+    if (!this.head) {
+      this.head = new Node(value);
       return true;
     }
   }
@@ -28,7 +28,7 @@ class LinkedList {
   // 设置指定位置的元素
   set(index, value) {
     const node = this.get(index);
-    if(!node) return
+    if (!node) return;
 
     node.value = value;
   }
@@ -37,7 +37,7 @@ class LinkedList {
   add(value) {
     if (this.initNode(value)) return true;
 
-    let lastNode = this.first;
+    let lastNode = this.head;
     while (lastNode.next) {
       lastNode = lastNode.next;
     }
@@ -50,9 +50,9 @@ class LinkedList {
 
   //尾部删除
   remove() {
-    if (!this.first) return this.first;
+    if (!this.head) return this.head;
 
-    let lastNode = this.first;
+    let lastNode = this.head;
     while (lastNode.next && lastNode.next.next) {
       lastNode = lastNode.next;
     }
@@ -66,18 +66,18 @@ class LinkedList {
   offer(value) {
     if (this.initNode(value)) return true;
     const node = new Node(value);
-    node.setNext(this.first);
-    this.first = node;
+    node.setNext(this.head);
+    this.head = node;
 
     return true;
   }
 
   //头部删除
   poll() {
-    const result = this.first;
+    const result = this.head;
 
-    if (this.first) {
-      this.first = this.first.next || null;
+    if (this.head) {
+      this.head = this.head.next || null;
     }
 
     return result;
@@ -85,39 +85,39 @@ class LinkedList {
 
   //判断是否含有某一元素。
   contains(value) {
-    let node = this.first;
+    let node = this.head;
 
-    while(node){
-      if(node.value===value){
-        return true
+    while (node) {
+      if (node.value === value) {
+        return true;
       }
-      node = node.next
+      node = node.next;
     }
 
-    return false
+    return false;
   }
 
   //查找指定元素从前往后第一次出现的索引。
   indexOf(value) {
-    let node = this.first;
-    let index = 0
+    let node = this.head;
+    let index = 0;
 
-    while(node){
-      if(node.value===value){
-        return index
+    while (node) {
+      if (node.value === value) {
+        return index;
       }
-      node = node.next
-      index++
+      node = node.next;
+      index++;
     }
-    
-    return -1
+
+    return -1;
   }
 
   //返回指定位置的元素，大于长度返回最后一个，小于0等于0返回第一个
   get(index) {
-    let node = this.first;
-    
-    while (index > 0 &&node&& node.next) {
+    let node = this.head;
+
+    while (index > 0 && node && node.next) {
       node = node.next;
       index--;
     }
@@ -126,14 +126,14 @@ class LinkedList {
 
   //返回第一个元素
   peek() {
-    return this.first;
+    return this.head;
   }
 
   //返回最后一个元素
   peekLast() {
-    let node = this.first;
+    let node = this.head;
 
-    while (node&&node.next) {
+    while (node && node.next) {
       node = node.next;
     }
 
@@ -142,12 +142,12 @@ class LinkedList {
 
   //清空链表
   clear() {
-    this.first = null;
+    this.head = null;
   }
 
   //克隆该列表
   clone() {
-    let node = this.first;
+    let node = this.head;
     const newList = new LinkedList();
     while (node) {
       const { value } = node;
@@ -160,13 +160,11 @@ class LinkedList {
   //返回链表元素个数
   size() {
     const lastNode = this.peekLast();
-    return lastNode ? this.indexOf(lastNode.value)+1 : 0;
+    return lastNode ? this.indexOf(lastNode.value) + 1 : 0;
   }
 
   //返回一个由链表元素组成的数组
-  toArray() {
-    
-  }
+  toArray() {}
 }
 
 const linkedList = new LinkedList();
@@ -185,3 +183,8 @@ console.log(linkedList);
 console.log(linkedList.clone());
 console.log(linkedList.clone() === linkedList);
 console.log(linkedList.clone().size());
+
+module.exports = {
+  Node,
+  LinkedList,
+};
