@@ -1,11 +1,15 @@
-const upperHandler = () => {};
-
 /**
  * @param {character[]} letters
  * @param {character} target
  * @return {character}
  */
 var nextGreatestLetter = function (letters, target) {
+  if (
+    letters[0].codePointAt(0) > target.codePointAt(0) ||
+    letters[letters.length - 1].codePointAt(0) < target.codePointAt(0)
+  )
+    return letters[0];
+
   let left = 0;
   let right = letters.length - 1;
   let tarEleNum = target.codePointAt(0);
@@ -16,22 +20,21 @@ var nextGreatestLetter = function (letters, target) {
     const midEleNum = midEle.codePointAt(0);
 
     if (midEle === target) {
-    left = mid+1
+      left = mid + 1;
     } else if (midEleNum < tarEleNum) {
       left = mid + 1;
     } else {
       right = mid - 1;
     }
   }
-console.log(left);
-  if (
-    left === letters.length &&
-    tarEleNum > letters[letters.length - 1].codePointAt(0)
-  ) {
+
+  if (left >= letters.length) {
     return letters[0];
   }
 
-  return letters[left-1];
+  return letters[left];
 };
-console.log(nextGreatestLetter(["c", "f", "j"], "j"));
-console.log(nextGreatestLetter(["e","e","e","e","e","e","n","n","n","n"], "e"));
+console.log(nextGreatestLetter(["c", "f", "j"], "c"));
+console.log(
+  nextGreatestLetter(["e", "e", "e", "e", "e", "e", "n", "n", "n", "n"], "e")
+);
