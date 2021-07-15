@@ -18,11 +18,10 @@ var findMin = function (nums) {
   let right = nums.length - 1;
 
   while (left < right) {
-    console.log(left);
     const mid = left + Math.floor((right - left) / 2);
     if (nums[mid] === nums[mid + 1]) {
       if (nums[left] <= nums[mid]) {
-        left = mid;
+        left = mid+1;
       } else {
         right = mid;
       }
@@ -36,5 +35,6 @@ var findMin = function (nums) {
   }
   return nums[0];
 };
-console.log(findMin([2, 2, 2, 0, 1]));
-console.log(findMin([3, 1]));
+// console.log(findMin([2, 2, 2, 0, 1]));
+// console.log(findMin([3, 1]));
+console.log(findMin([10,1,10,10,10]));
