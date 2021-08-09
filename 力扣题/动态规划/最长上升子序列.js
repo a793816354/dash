@@ -2,41 +2,19 @@
  * @param {number[]} nums
  * @return {number}
  */
-// 失败
-// var lengthOfLIS = function (nums) {
-//   if (nums.length < 2) {
-//     return nums.length;
-//   }
-
-//   const curVal = nums[nums.length - 1];
-//   let index = nums.length - 2;
-//   for (; index >= 0; index--) {
-//     const ele = nums[index];
-//     if (curVal > ele) {
-//       break;
-//     }
-//   }
-
-//   return lengthOfLIS(nums.slice(0, index === -1 ? 0 : index)) + 1;
-// };
-
-/**
- * @param {number[]} nums
- * @return {number}
- */
-var lengthOfLIS = function (nums) {
-  
-
-  for (let i = 0; i < nums.length; i++) {
-    const ele = nums[i];
-    let lastMax = ele
-    for (let j = i + 1; j < array.length; j++) {
-      if(){
-
-      }
+var lengthOfLIS = function (nums, value) {
+  // console.log(nums);
+  let a = 1;
+  for (let index = 1; index < nums.length - 1; index++) {
+    const ele = nums[index];
+    if (ele < value || value === undefined) {
+      a = Math.max(a, lengthOfLIS(nums.slice(0, index + 1), nums[index]) + 1);
     }
   }
+  return a;
 };
-
+console.log(lengthOfLIS([1, 3, 6, 7, 9, 4, 10, 5]));
+console.log(lengthOfLIS([1, 3, 6, 7, 9, 4, 10, 5, 6]));
 console.log(lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]));
+console.log(lengthOfLIS([3, 5, 6, 2, 5, 4, 19, 5, 6, 7, 12], 3));
 console.log(lengthOfLIS([7, 7, 7, 7, 7, 7, 7]));
