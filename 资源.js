@@ -11,7 +11,17 @@ const getSortArr = (num = 20, asc = true) => {
   return result;
 };
 
+const isSorted = (arr) => {
+  for (let index = 1; index < arr.length; index++) {
+    if (arr[index] < arr[index - 1]) {
+      return false;
+    }
+  }
+  return true;
+};
+
 module.exports = {
   getRandomArr,
   getSortArr,
+  isSorted,
 };
