@@ -11,7 +11,22 @@ const getSortArr = (num = 20, asc = true) => {
   return result;
 };
 
+const swap = (arr, i, j) => {
+  const temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+};
+
+const isSorted=arr=>{
+  for (let index = 1; index < arr.length; index++) {
+    if(arr[index]<arr[index-1])return false
+  }
+  return true
+}
+
 module.exports = {
-  getRandomArr,
   getSortArr,
+  getRandomArr,
+  swap,
+  isSorted
 };
